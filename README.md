@@ -20,7 +20,26 @@ You can select and configure the Global and Local search engines, submit queries
 1. **Clone the repo**: Clone this repo to your local GraphRAG project directory.
 2. **GraphRAG pipeline**: If you haven't already, follow the [GraphRAG docs](https://microsoft.github.io/graphrag/get_started/) to initiate your project environment and create your knowledge graph.
 3. **Install requirements**: Install any requirements you might need in a virtual environment.
-4. **Run the app**: Run the app in your GraphRAG project directory:
+
+4. **Initialize GraphRAG**: Initialize your workspace by running the following command:
+
+```bash
+python -m graphrag.index --init --root ./ragtest
+```
+
+This command creates two files in the `./ragtest` directory:
+
+- `.env`: Contains environment variables required to run the GraphRAG pipeline.
+
+5. **Test text**:
+Create the necessary directories and download a sample text (A Christmas Carol by Charles Dickens) to ./ragtest/input and reduce to 700 lines
+
+```bash
+mkdir -p ./ragtest/input
+curl https://www.gutenberg.org/cache/epub/24022/pg24022.txt > ./ragtest/input/book.txt
+head -n 700 ./ragtest/input/book.txt > ./ragtest/input/book_temp.txt && mv ./ragtest/input/book_temp.txt ./ragtest/input/book.txt
+```
+6. **Run the app**: Run the app in your GraphRAG project directory:
 
 ```shell
 streamlit run Graph_query.py
